@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Restaurant Ordering Website</title>
+      <!-- <link rel="stylesheet" href="profile.css"> -->
+      <link rel="stylesheet" href="style.css">
+      
+   </head>
+   <body>
+      <header>
+        
+        <div class="container header-inner">
+          
+            <img
+              src="profile.webp"
+              alt="Foto da Pizzaria Delícia"
+              width="75"
+              height="75"
+              style="border-radius: 50%;"
+            />
+            <div><h2>Pizzaria Delícia</h2>
+              <p>As melhores pizzas da região!</p></div>
+            
+      
+         
+         <button id="toggle-btn" class="toggle-btn">
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               viewBox="0 0 24 24"
+               role="img"
+               aria-hidden="true"
+               class="v-icon__svg"
+               style="font-size: 18px; height: 25px; width: 25px; fill: #ffffff;"
+               >
+               <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
+            </svg>
+         </button>
+        
+    
+      </header>
+      <nav>
+         <ul class="menu">
+            <li><a href="#">Whatsapp 📞</a></li>
+            <li><a href="#">Localização 🗺️</a></li>
+            <li><a href="#">Cupons 🤑</a></li>
+            <li><a href="#">Pedidos 📦</a></li>
+            
+            
+            
+         </ul>
+      </nav>
+      <main class="main-content">
+         <div class="container">
+         <br><br><br><br>
+         <h2>Categoria 1 </h2>
+         <div class="menu-items">
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 5.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 7.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 5.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 7.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+         </div>
+         <br><br><br><br>
+         <h2>Categoria 2</h2>
+         <div class="menu-items">
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 5.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 7.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 5.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+            <div class="menu-item">
+               <img src="https://via.placeholder.com/300x200.png" alt="" />
+               <h3 class="name">Item name</h3>
+               <p class="description">
+                  Description of the item goes here. It can be longer or shorter
+                  depends on the content.
+               </p>
+               <div class="price">R$ 7.99</div>
+               <!-- <button class="add-to-cart">Add to cart</button> -->
+            </div>
+         </div>
+      </main>
+      <footer>
+         <div class="container">© 2023 Kitanda.shop All rights reserved.</div>
+      </footer>
+      <script>
+         // Add event listeners for "Add to cart" buttons
+         let addToCartButtons = document.querySelectorAll(".add-to-cart");
+         addToCartButtons.forEach((button) => {
+           button.addEventListener("click", () => {
+             // Add item to cart
+           });
+         });
+         
+         
+          // Toggle the menu when the button is clicked
+          document
+           .getElementById("toggle-btn")
+           .addEventListener("click", function () {
+             var menu = document.querySelector(".menu");
+             menu.classList.toggle("menu-open");
+           });
+         
+         // Close the menu when clicked outside
+         document.body.addEventListener("click", function (event) {
+           var menu = document.querySelector(".menu");
+           var toggleBtn = document.getElementById("toggle-btn");
+         
+           if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+             menu.classList.remove("menu-open");
+           }
+         });
+      </script>
+   </body>
+</html>

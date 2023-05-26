@@ -1,0 +1,174 @@
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+/* Basic Styling */
+body {
+  background-color: #eee;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+/* Header Styling */
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+.logo {
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fa0f0f;
+}
+.product-category {
+  text-decoration: none;
+  color: #fa0f0f;
+  margin-right: 5px;
+}
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.nav-item {
+  text-decoration: none;
+  font-weight: 400;
+  color: #fa0f0f;
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+.nav-item:hover {
+  background-color: #fa0f0f;
+  color: #fff;
+}
+/* Menu Styling */
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.add-to-cart {
+  background-color: #fa0f0f;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: 1rem;
+  width: 100%;
+}
+.add-to-cart:hover {
+  background-color: #e80e0e;
+}
+.menu-item {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+.menu-item img {
+  max-width: 100%;
+  margin-bottom: 1rem;
+}
+.menu-item .name {
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+.menu-item .description {
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+.menu-item .price {
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+/* Footer Styling */
+footer {
+  background-color: #fa0f0f;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.main-content {
+  padding-bottom: 4rem; /* Ajuste conforme necessário */
+}
+/* Style the toggle button */
+#toggle-btn {
+  background-color: #fa0f0f;
+  color: #fff; /* Cor do texto (opcional) */
+  border: none; /* Remover a borda (opcional) */
+  padding: 10px; /* Espaçamento interno (opcional) */
+  cursor: pointer;
+  border-radius: 5px;
+}
+/* Style the menu SIDE MENU*/
+.menu {
+  list-style: none;
+  background-color: #f1f1f1;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: -100vw;
+  width: 60vw;
+  height: 100%;
+  transition: left 0.3s ease;
+  text-align: right;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.menu li {
+  padding: 20px;
+  margin-bottom: 3vh;
+  margin-right: 10vw;
+}
+.menu li a {
+  text-decoration: none;
+  color: #333333;
+  font-size: 1.2rem;
+}
+.menu li a:hover {
+  color: #fa0f0f;
+}
+/* Show menu when button is clicked */
+.menu-open {
+  left: 0;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+.category-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+.category-link {
+  display: inline-block;
+  padding: 10px;
+  background-color: #f2f2f2;
+  margin-right: 10px;
+  text-decoration: none;
+  color: #333;
+}
