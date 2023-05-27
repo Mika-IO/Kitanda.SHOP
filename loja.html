@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>kitanda.shop - Plataforma de Pedidos</title>
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="splash-screen">
+        <img class="splash-logo" src="logo.svg" alt="Logo da aplicação">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+    <nav class="kgreen lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <a id="logo-container" href="/" class="brand-logo">kitanda.shop</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h4 class="center-align">Pizzaria Delícia</h4>
+                <p class="center-align">As melhores pizzas da região!</p>
+
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-content center-align">
+                                <i class="material-icons">phone</i>
+                                <p>Whatsapp </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-content center-align">
+                                <i class="material-icons">location_on</i>
+                                <p>Localização</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-content center-align">
+                                <i class="material-icons">local_offer</i>
+                                <p>Cupons</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <h5>Categoria 1</h5>
+
+                        <div id="categoria1" class="card">
+                            <div class="card-content row"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <h5>Categoria 2</h5>
+
+                        <div id="categoria2" class="card">
+                            <div class="card-content row"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        var produtos = [
+            {
+                nome: "Item name",
+                categoria: "Categoria 1",
+                preco: "R$ 5.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            },
+            {
+                nome: "Item name",
+                categoria: "Categoria 1",
+                preco: "R$ 7.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            },
+            {
+                nome: "Item name",
+                categoria: "Categoria 1",
+                preco: "R$ 5.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            },
+            {
+                nome: "Item name",
+                categoria: "Categoria 1",
+                preco: "R$ 7.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            },
+            {
+                nome: "Item name",
+                categoria: "Categoria 2",
+                preco: "R$ 5.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            },
+            {
+                nome: "Item name",
+                categoria: "Categoria 2",
+                preco: "R$ 7.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            },
+            {
+                nome: "Item name",
+                categoria: "Categoria 2",
+                preco: "R$ 5.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            },
+            {
+                nome: "Item name",
+                categoria: "Categoria 2",
+                preco: "R$ 7.99",
+                image: "https://cdn.casaeculinaria.com/wp-content/uploads/2023/04/05163949/Hamburguer-artesanal.webp",
+                descricao: "Description of the item goes here. It can be longer or shorter depending on the content."
+            }
+        ];
+
+        // Função para adicionar os produtos na DOM
+        function adicionarProdutos() {
+            var categoria1Div = document.getElementById("categoria1");
+            var categoria2Div = document.getElementById("categoria2");
+
+            produtos.forEach(function (produto) {
+                var cardHTML = `
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-image">
+                        <img class="responsive-img" src="${produto.image}" alt="Imagem do produto">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">${produto.nome}</span>
+                        <p>${produto.descricao}</p>
+                        <p>${produto.preco}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+                if (produto.categoria === "Categoria 1") {
+                    categoria1Div.querySelector(".card-content").insertAdjacentHTML('beforeend', cardHTML);
+                } else if (produto.categoria === "Categoria 2") {
+                    categoria2Div.querySelector(".card-content").insertAdjacentHTML('beforeend', cardHTML);
+                }
+            });
+        }
+
+        adicionarProdutos();
+
+    </script>
+</body>
+
+</html>
