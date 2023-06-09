@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1.0"
-    />
-    <title>kitanda.shop - Plataforma de Pedidos</title>
-    <!-- CSS  -->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      href="../materialize.min.css"
-      type="text/css"
-      rel="stylesheet"
-      media="screen,projection"
-    />
-    <link rel="stylesheet" href="../style.css" />
-  </head>
 
-  <body>
-    <div class="splash-screen">
-      <img class="splash-logo" src="logo.svg" alt="Logo da aplicação" />
-      <div class="progress">
-        <div class="indeterminate"></div>
-      </div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>kitanda.shop - Plataforma de Pedidos</title>
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="../styles/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link rel="stylesheet" href="../styles/style.css" />
+</head>
+
+<body>
+  <div class="splash-screen">
+    <img class="splash-logo" src="../assets/logo.svg" alt="Logo da aplicação" />
+    <div class="progress">
+      <div class="indeterminate"></div>
     </div>
-    <nav class="kgreen lighten-1" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="/" class="brand-logo">kitanda.shop</a>
-      </div>
-    </nav>
-    <script src="../script.js"></script>
-  </body>
+  </div>
+  <nav class="kgreen lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="/" class="brand-logo">kitanda.shop</a>
+    </div>
+  </nav>
+  <script>
+
+    window.addEventListener("load", function () {
+      var splashScreen = document.querySelector(".splash-screen");
+      var randomTime = Math.floor(Math.random() * 700); // Tempo aleatório entre 0 e 700 milissegundos
+
+      setTimeout(function () {
+        splashScreen.style.display = "none";
+      }, randomTime);
+    });
+
+
+  </script>
+</body>
+
 </html>
