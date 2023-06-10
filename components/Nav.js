@@ -1,10 +1,11 @@
+
 "use strict";
 
 const Nav = () => {
   return (
-    <nav class="kgreen lighten-1" role="navigation">
-      <div class="nav-wrapper container">
-        <a id="logo-container" href="/" class="brand-logo">
+    <nav className="kgreen lighten-1" role="navigation">
+      <div className="nav-wrapper container">
+        <a id="logo-container" href="/" className="brand-logo">
           kitanda.shop
         </a>
       </div>

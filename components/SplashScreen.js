@@ -14,7 +14,7 @@ const SplashScreen = () => {
 
   const Splash = () => (
     <div className="splash-screen">
-      <img className="splash-logo" src="logo.svg" alt="Logo da aplicação" />
+      <img className="splash-logo" src="assets/logo.svg" alt="Logo da aplicação" />
       <div className="progress">
         <div className="indeterminate"></div>
       </div>
