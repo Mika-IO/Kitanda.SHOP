@@ -1,11 +1,11 @@
 from alicepy.alice import Component
 
 
-def page(content):
+def base_layout(content):
     kgreen = """
-    <style>
-    .kgreen {color: #48c794;}
-    </style>
+        <style>
+        .kgreen {color: #48c794;}
+        </style>
     """
     return Component(
         f"""

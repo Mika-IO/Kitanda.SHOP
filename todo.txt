@@ -1,0 +1,46 @@
+## KITANDA
+
+- Nav
+- SplashScreen
+
+- Store
+    
+    - ProductCard
+    - Cart
+- Checkout
+
+- Store register
+- Store login
+
+- Store dashboard
+    - Store categorys
+    - Store products
+    - Store orders
+
+    - Store configuration
+
+## ALICEPY
+
+-- Router
+
+. no app.py implementar uma funcao chamada com a interface 
+
+app.urls = [
+    ("/", "index.html"),
+    ("/comprar", "comprar.html"),
+    ("/vender", "vender.html"),
+    ("/store_profile/<store_id>", "store_profile.html"),
+    ("/store/<store_id>", "store.html"),
+]
+
+-- Component
+
+. Implementar html() para converter pseudo jsx para um f string objeto
+
+. Implementar uma forma de aninhar Components
+
+Component(f"""
+
+<h1></h1>
+
+""")
