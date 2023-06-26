@@ -1,12 +1,12 @@
-"use strict";
+import React, { useState, useEffect } from 'react';
+import logo from '../assets/logo.svg';
+import Image from 'next/image'
 
-const { useState, useEffect } = React;
-
-const SplashScreen = () => {
+function SplashScreen() {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    const randomTime = Math.floor(Math.random() * 701); // Gera um número aleatório entre 0 e 700
+    const randomTime = Math.floor(Math.random() * 701);
     setTimeout(() => {
       setShowSplash(false);
     }, randomTime);
@@ -14,7 +14,7 @@ const SplashScreen = () => {
 
   const Splash = () => (
     <div className="splash-screen">
-      <img className="splash-logo" src="assets/logo.svg" alt="Logo da aplicação" />
+      <Image className="splash-logo" src={logo} alt="Logo da aplicação" />
       <div className="progress">
         <div className="indeterminate"></div>
       </div>
@@ -22,6 +22,6 @@ const SplashScreen = () => {
   );
 
   return <div>{showSplash ? <Splash /> : <div></div>}</div>;
-};
+}
 
-customElements.define("splash-screen", SplashScreen);
+export default SplashScreen;

@@ -1,7 +1,4 @@
-
-"use strict";
-
-const Nav = () => {
+function Nav() {
   return (
     <nav className="kgreen lighten-1" role="navigation">
       <div className="nav-wrapper container">
@@ -13,4 +10,4 @@ const Nav = () => {
   );
 };
 
-customElements.define("nav-header", Nav);
+export default Nav

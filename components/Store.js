@@ -1,6 +1,4 @@
-"use strict";
-
-const { useState, useEffect } = React;
+import { useState, useEffect } from 'react';
 
 
 const produtos = [
@@ -155,17 +153,17 @@ const Store = () => {
 
                     <FloatingButtons />
 
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="row">
-                                <div class="input-field col s12">
-                                    <i class="material-icons prefix">search</i>
-                                    <input type="text" placeholder="Pesquisar..." id="autocomplete-input" class="autocomplete" />
+                    <div className="row">
+                        <div className="col s12">
+                            <div className="row">
+                                <div className="input-field col s12">
+                                    <i className="material-icons prefix">search</i>
+                                    <input type="text" placeholder="Pesquisar..." id="autocomplete-input" className="autocomplete" />
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div >
+                    </div >
 
                     <div className="row">
                         <div className="col s12">
@@ -176,10 +174,10 @@ const Store = () => {
                         </div>
                     </div>
 
-                </div>
-            </div>
-        </div>
+                </div >
+            </div >
+        </div >
     );
 };
 
-customElements.define("store-page", Store);
+export default Store
