@@ -5,8 +5,11 @@ const Home = (props) => {
         <div class="container">
           <br />
           <br />
-          <h1 class="title is-1 has-text-centered has-text-success">
+          {/* <h1 class="title is-1 has-text-centered has-text-success">
             Comece já!
+          </h1> */}
+          <h1 class="title is-1 has-text-centered has-text-success">
+            Em breve!
           </h1>
           <div class="columns is-centered">
             <div class="column is-half">
