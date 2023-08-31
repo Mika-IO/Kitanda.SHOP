@@ -1,1 +1,1 @@
-web: gunicorn auxiliai_core.wsgi --log-file -
+web: gunicorn kitanda_shop.wsgi --log-file -
