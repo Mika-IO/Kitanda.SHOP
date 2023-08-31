@@ -1,0 +1,73 @@
+# Kitanda.shop
+
+Models ❌
+
+tipo_loja - [mercado, farmácia, frutaria, outro]
+
+- Loja ❌
+    id
+    Adress
+    name
+    delivery fee
+    whatsapp
+    facebook
+    instagram
+    payment_methods [
+        na entrega
+        cartao de crédito
+        cartao de débito
+        pix
+    ]
+- ProductCategory ❌
+    id
+    name
+    prescription? OBS:exclusivo para remédios de farmácia
+- Products ❌
+    id
+    name
+    description
+    price
+    ProductCategory
+    prescription OBS:exclusivo para remédios de farmácia
+- Order ❌
+    id
+    Products
+    Client
+- Checkout ❌
+    id
+    Order
+    total
+- Client ❌
+    id
+    name
+    Adress
+    whatsapp
+- Adress ❌
+    id
+    CEP
+    road
+    number
+    neighborhood
+    city
+    state
+
+URLS
+
+- / ❌
+    landing page sobre kitanda shop e lojas proximas ao usuario
+        caso nao existam lojas proximas ao usuario se deve mostrar as lojas mais populares do site
+
+- loja/{name} ❌
+    perfil da loja com informacoes e link p compra
+
+- loja/comprar/{name} ❌
+    pagina de vendas com produtos dividos por categoria
+    carrinho
+
+- /checkout/{id} ❌
+    pagina de pagamento
+    endereco
+
+- /dashboard ❌
+    informacoes da loja
+    cadastro de produtos
