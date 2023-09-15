@@ -71,3 +71,6 @@ URLS
 - /dashboard ❌
     informacoes da loja
     cadastro de produtos
+
+
+Hover categirias na home

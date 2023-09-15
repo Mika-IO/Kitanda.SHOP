@@ -8,6 +8,14 @@
   src: url("../fonts/Poppins-Regular.otf");
 }
 
+a {
+  text-decoration: none;
+}
+
+b {
+  text-decoration: none;
+}
+
 :root {
   --color-background: #fffff;
   --color-black: #212121;
@@ -229,7 +237,7 @@ a.navbar-brand {
   left: 0;
   right: 0;
   height: 500px;
-  background-image: url(static/img/bg-icons-2.png);
+  background-image: url(../img/bg-icons-2.png);
 }
 
 .cardapio {
@@ -242,7 +250,7 @@ a.navbar-brand {
   left: 0;
   right: 0;
   height: 500px;
-  background-image: url(static/img/bg-icons-1.png);
+  background-image: url(../img/bg-icons-1.png);
 }
 
 .container-menu {
@@ -345,7 +353,7 @@ a.navbar-brand {
   left: 0;
   right: 0;
   height: 500px;
-  background-image: url(static/img/bg-icons-1.png);
+  background-image: url(../img/bg-icons-1.png);
 }
 
 .card-depoimentos {
@@ -376,17 +384,17 @@ a.navbar-brand {
 }
 
 #depoimento-1 .imagem-depoimento {
-  background-image: url(static/img/diego.jpg);
+  background-image: url(../img/diego.jpg);
   background-size: cover;
 }
 
 #depoimento-2 .imagem-depoimento {
-  background-image: url(static/img/ana.jpg);
+  background-image: url(../img/ana.jpg);
   background-size: cover;
 }
 
 #depoimento-3 .imagem-depoimento {
-  background-image: url(static/img/joao.jpg);
+  background-image: url(../img/joao.jpg);
   background-size: cover;
 }
 

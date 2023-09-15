@@ -11,6 +11,8 @@ urlpatterns = [
     path("loja/comprar/<str:name>/", views.ComprarView.as_view(), name="comprar"),
     path("checkout/<uuid:id>/", views.CheckoutView.as_view(), name="checkout"),
     path("dashboard/", views.DashboardView.as_view(), name="dashboard"),
+    path("login/", views.loginView.as_view(), name="login"),
+    path("register/", views.registerView.as_view(), name="register"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
