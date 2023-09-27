@@ -1,124 +1,82 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Kitanda{% endblock %}
+
+{% block content %}
 {% load static %}
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Restaurante - Seja bem-vindo!</title>
-    <base href="/" />
-    <link rel="stylesheet" href="{% static './css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static './css/fontawesome.css' %}" />
-    <link rel="stylesheet" href="{% static './css/animate.css' %}" />
-    <link rel="stylesheet" href="{% static './css/main.css' %}" />
-    <link rel="stylesheet" href="{% static './css/responsivo.css' %}" />
-  </head>
+<base href="/" />
+<div class="container-mensagens" id="container-mensagens"></div>
+<section class="cardapio banner" id="cardapio">
+  <a class="botao-carrinho animated bounceIn" href="/cart/{{ name }}">
+    <div class="badge-total-carrinho">9</div>
+    <i class="fa fa-shopping-bag"></i>
+  </a>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-one text-center mb-5 wow fadeIn">
+        <span class="hint-title"><b>Loja</b></span>
+        <h1 class="title">
+          <b>{{ name }}</b>
+        </h1>
+        <p>Ariquemes-RO</p>
+      </div>
+      <!-- 
+      TODO categorias de produtos
+      <div class="col-12 col-one container-menu wow fadeInUp">
+        <a id="menu-burgers" class="btn btn-white btn-sm mr-3 active">
+          <i class="fas fa-check"></i>
+        </a>
+        <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
+          <i class="fas fa-utensils"></i>&nbsp; Restaurante
+        </a>
+        <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
+          <i class="fas fa-pizza-slice"></i>&nbsp; Pizzaria
+        </a>
+        <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
+          <i class="fas fa-hamburger"></i>&nbsp; Hamburgueria
+        </a>
+        <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
+          <i class="fas fa-shopping-basket"></i>&nbsp; Mercado
+        </a>
+        <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
+          <i class="fas fa-hospital"></i>&nbsp; Farmácia
+        </a>
+        <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
+          <i class="fas fa-not-equal"></i>&nbsp; Outros
+        </a>
+      </div> -->
+      <div class="row" id="itensCardapio">
+        {% for produto in produtos %}
+        <div class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 animated fadeInUp">
+          <div class="card card-item" id="{{ produto.id }}">
+            <a href="/product/{{ produto.id }}">
 
-  <body>
-    <div class="container-mensagens" id="container-mensagens"></div>
-
-    <a
-      class="botao-carrinho animated bounceIn hidden"
-      onclick="cardapio.metodos.abrirCarrinho(true)"
-    >
-      <div class="badge-total-carrinho">0</div>
-      <i class="fa fa-shopping-bag"></i>
-    </a>
-
-    <section class="cardapio banner" id="cardapio">
-      <div class="background-cardapio"></div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-12 col-one text-center mb-5 wow fadeIn">
-            <span class="hint-title"><b>Loja</b></span>
-            <h1 class="title">
-              <b>{{ name }}</b>
-            </h1>
-          </div>
-
-          <div class="col-12 col-one container-menu wow fadeInUp">
-            <a id="menu-burgers" class="btn btn-white btn-sm mr-3 active">
-              <i class="fas fa-check"></i>
-            </a>
-            <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
-              <i class="fas fa-utensils"></i>&nbsp; Restaurante
-            </a>
-            <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
-              <i class="fas fa-pizza-slice"></i>&nbsp; Pizzaria
-            </a>
-            <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
-              <i class="fas fa-hamburger"></i>&nbsp; Hamburgueria
-            </a>
-            <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
-              <i class="fas fa-shopping-basket"></i>&nbsp; Mercado
-            </a>
-            <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
-              <i class="fas fa-hospital"></i>&nbsp; Farmácia
-            </a>
-            <a id="menu-burgers" class="btn btn-white btn-sm mr-3">
-              <i class="fas fa-not-equal"></i>&nbsp; Outros
-            </a>
-          </div>
-
-          <div class="row" id="itensCardapio">
-            {% for produto in produtos %}
-            <div
-              class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 animated fadeInUp"
-            >
-              <div class="card card-item" id="{{ produto.id }}">
-                <div class="img-produto">
-                  <img src="{{ produto.imagem }}" />
-                </div>
-                <p class="title-produto text-center mt-4">
-                  <b>{{ produto.nome }}</b>
-                </p>
-                <p class="price-produto text-center">
-                  <b>{{ produto.preco }}</b>
-                </p>
-                <div class="add-carrinho">
-                  <span
-                    class="btn-menos"
-                    onclick="cardapio.metodos.diminuirQuantidade('{{ produto.id }}')"
-                  >
-                    <i class="fas fa-minus"></i>
-                  </span>
-                  <span class="add-numero-itens" id="qntd-{{ produto.id }}"
-                    >0</span
-                  >
-                  <span
-                    class="btn-mais"
-                    onclick="cardapio.metodos.aumentarQuantidade('{{ produto.id }}')"
-                  >
-                    <i class="fas fa-plus"></i>
-                  </span>
-                  <span
-                    class="btn btn-add"
-                    onclick="cardapio.metodos.adicionarAoCarrinho('{{ produto.id }}')"
-                  >
-                    <i class="fa fa-shopping-bag"></i>
-                  </span>
-                </div>
+              <div class="img-produto">
+                <img src="{{ produto.imagem }}" />
               </div>
-            </div>
-            {% endfor %}
+              <p class="title-produto text-center mt-3">
+                <b>{{ produto.nome }}</b>
+              </p>
+            </a>
+            <small class="disaper text-center"><span>{{ produto.preco }}</span></small>
+
+            <a class="btn btn-add mt-3" href="/loja/{{ name }}?addToCart={{ produto.id }}">
+              <i class="fa fa-shopping-cart"></i>
+            </a>
+            <!-- 
+              TODO quantidade do produto
+              <span class="btn-menos" onclick="cardapio.metodos.diminuirQuantidade('{{ produto.id }}')">
+              <i class="fas fa-minus"></i>
+              </span>
+              <span class="add-numero-itens" id="qntd-{{ produto.id }}">0</span>
+              <span class="btn-mais" onclick="cardapio.metodos.aumentarQuantidade('{{ produto.id }}')">
+                <i class="fas fa-plus"></i>
+              </span>
+            -->
           </div>
         </div>
+        {% endfor %}
       </div>
-    </section>
-
-
-    <script
-      type="text/javascript"
-      src="{% static './js/modernizr-3.5.0.min.js' %}"
-    ></script>
-    <script
-      type="text/javascript"
-      src="{% static './js/bootstrap.min.js' %}"
-    ></script>
-    <script
-      type="text/javascript"
-      src="{% static './js/popper.min.js' %}"
-    ></script>
-
-</html>
+    </div>
+  </div>
+</section>
+{% endblock %}

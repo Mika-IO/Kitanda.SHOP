@@ -207,8 +207,6 @@ a.navbar-brand {
 .title {
   color: var(--color-black);
   font-size: 40px;
-  margin-top: 5px;
-  margin-bottom: 30px;
 }
 
 .card-icon {
@@ -258,7 +256,15 @@ a.navbar-brand {
 }
 
 .card-item {
-  height: 360px;
+  height: 400px;
+}
+
+.card-item:hover {
+  background-color: var(--color-primary);
+}
+
+.disaper:hover {
+  background-color: var(--color-primary);
 }
 
 .card-item .img-produto img {
@@ -267,17 +273,8 @@ a.navbar-brand {
 }
 
 .card-item .title-produto {
-  color: var(--color-black);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  height: 40px;
-  margin-bottom: 0px;
-}
-
-.card-item .price-produto {
-  color: var(--color-primary);
-  font-size: 24px;
+  color: var(--color-black-heavy);
+  font-size: 16px;
 }
 
 .card-item .add-carrinho {
@@ -317,31 +314,14 @@ a.navbar-brand {
 }
 
 .btn-add {
-  border: 2px solid var(--color-black-heavy);
+  border: 2px solid var(--color-primary);
   font-size: 16px;
   padding: 4px 10px;
   border-radius: 10px;
   color: var(--color-white);
-  background-color: var(--color-black-heavy);
-  margin-left: 15px;
-}
-
-.card-item:hover {
   background-color: var(--color-primary);
 }
 
-.card-item:hover .title-produto {
-  display: none;
-}
-
-.card-item:hover .add-carrinho {
-  display: flex;
-}
-
-.card-item:hover .price-produto {
-  color: var(--color-black-heavy) !important;
-  margin-top: 20px;
-}
 
 .depoimentos {
   padding-top: 100px;
@@ -583,16 +563,8 @@ footer {
   border-radius: 11px;
 }
 
-.modal-full .title-produto {
-  color: var(--color-black);
-  font-size: 20px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  margin-bottom: 0;
-}
 
-.modal-full .price-produto {
+.modal-full .title-produto {
   color: var(--color-primary);
   font-size: 24px;
   margin-bottom: 0;
@@ -674,6 +646,10 @@ select.form-control {
 .item-carrinho.resumo {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+a:hover {
+  color: var(--color-black-heavy);
 }
 
 .title-produto-resumo {
