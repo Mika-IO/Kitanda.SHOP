@@ -7,6 +7,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.models import Group
+from core.forms import StoreForm
+
 
 from .models import Store, Product
 
@@ -99,11 +104,6 @@ def adress(request, name):
     )
 
 
-def dashboard(request):
-    # Implement your logic to fetch store information for the dashboard
-    return render(request, "seller/dashboard.html", {})
-
-
 @csrf_protect
 def login(request):
     error = False
@@ -118,9 +118,9 @@ def login(request):
                 # messages.info(request, f"You are now logged in as {username}.")
                 return redirect("/dashboard/")
             else:
-                error = "Invalid username, password or capcha."
+                error = "Usuário ou senha inválido"
         else:
-            error = "Invalid username, password or capcha."
+            error = "Usuário ou senha inválido"
     form = AuthenticationForm()
     return render(
         request=request,
@@ -136,10 +136,19 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            # Adicione o usuário ao grupo "Owner"
+            owner_group, created = Group.objects.get_or_create(name="Owner")
+            user.groups.add(owner_group)
+            user.is_staff = True
+            user.save()
+            # Adicione qualquer código adicional aqui para associar o usuário a um time, se necessário.
+
             return redirect("/login/")
         else:
             error = "Formulário inválido"
-    form = UserCreationForm()
+    else:
+        form = UserCreationForm()
     return render(
         request,
         template_name="register.html",

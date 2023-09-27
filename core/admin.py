@@ -14,11 +14,11 @@ class StoreAdmin(admin.ModelAdmin):
     pass
 
 
-class AddressAdmin(admin.ModelAdmin):
+class ClientAdmin(admin.ModelAdmin):
     pass
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Store, StoreAdmin)
 admin.site.register(Order, OrderAdmin)
-admin.site.register(Address, AddressAdmin)
+admin.site.register(Client, ClientAdmin)

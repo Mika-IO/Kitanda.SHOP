@@ -28,10 +28,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+LOGIN_URL = "/login/"
+LOGOUT_URL = "/logout/"
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -68,6 +72,20 @@ TEMPLATES = [
         },
     },
 ]
+
+
+JAZZMIN_SETTINGS = {
+    "show_sidebar": True,
+    "related_modal_active": False,
+    "changeform_format": "stacked",
+    "changeform_format_overrides": {
+        "auth.user": "tabs",
+    },
+    "site_title": "Kitanda.shop",
+    "site_brand": "Kitanda Admin",
+    "site_logo": "img/logo.svg",
+}
+
 
 WSGI_APPLICATION = "kitanda_shop.wsgi.application"
 

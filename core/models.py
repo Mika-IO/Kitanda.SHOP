@@ -1,20 +1,6 @@
 import uuid
 from django.db import models
-
-
-class Address(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    CEP = models.CharField(max_length=10)
-    road = models.CharField(max_length=100)
-    number = models.CharField(max_length=20)
-    neighborhood = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-
-
-class PaymentMethod(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=20)
+from django.contrib.auth.models import User
 
 
 class Store(models.Model):
@@ -26,21 +12,21 @@ class Store(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    type = models.CharField(max_length=20, choices=TYPE_CHOICES, blank=True)
+    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="lojas/")
-    delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
+    owner = models.ForeignKey(
+        User,
+        null=False,
+        on_delete=models.CASCADE,
+        verbose_name="Owner",
+    )
+    delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     slug = models.CharField(max_length=20, null=True)
-    whatsapp = models.CharField(max_length=20, null=True, blank=True)
-    facebook = models.CharField(max_length=100, null=True, blank=True)
-    instagram = models.CharField(max_length=100, null=True, blank=True)
-    payment_methods = models.ManyToManyField(PaymentMethod, blank=True)
-    address = models.ForeignKey(Address, on_delete=models.CASCADE, blank=True)
-
-
-class ProductCategory(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=100)
+    whatsapp = models.CharField(max_length=20, null=True)
+    facebook = models.CharField(max_length=100, null=True)
+    instagram = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, null=True)
 
 
 class Product(models.Model):
@@ -48,17 +34,19 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField(upload_to="produtos/")
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey(
-        ProductCategory, on_delete=models.CASCADE, null=True, blank=True
+    store = models.ForeignKey(
+        Store,
+        null=False,
+        on_delete=models.CASCADE,
+        verbose_name="Owner",
     )
-    prescription = models.BooleanField(default=False)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
 
 class Client(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=100)
-    address = models.ManyToManyField(Address)
+    address = models.CharField(max_length=100, null=True)
     whatsapp = models.CharField(max_length=20)
 
 

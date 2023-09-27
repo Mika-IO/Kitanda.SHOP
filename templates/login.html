@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+
 {% block title %}Kitanda{% endblock %}
 
 {% block content %}
+
 {% load static %}
 <style>
   .bg-custom {
@@ -16,6 +18,9 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card shadow-2-strong" style="border-radius: 1rem">
+            {% if error %}
+            <p class="alert-danger m-auto center">! {{error}} !</p>
+            {% endif %}
             <form method="post" class="card-body p-5 text-center">
               {% csrf_token %}
               <hr class="my-4" />

@@ -59,6 +59,7 @@ URLS
 - /dashboard  ❌
     informacoes da loja ❌
     cadastro de produtos ❌
+    gerenciamento de pedidos ❌
 
 - /  ✅
     lojas parceiras ✅
