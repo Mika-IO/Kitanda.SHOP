@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% block title %}Kitanda{% endblock %}
+
+{% block content %}
+{% load static %}
+<base href="/" />
+<div class="modal-full animated fadeIn" id="modalCarrinho">
+
+    <div class="m-header">
+        <div class="container">
+            <a class="btn btn-white btn-sm float-right" href="loja/{{name}}">
+                Fechar
+            </a>
+            <div class="etapas">
+                <div class="etapa etapa1"><a href="/cart/{{name}}">1</a></div>
+                <div class="etapa etapa1"><a href="/address/{{name}}">2</a></div>
+                <div class="etapa etapa2 active"><a href="/review/{{name}}">3</a></div>
+            </div>
+            <p class="title-carrinho mt-4">
+                <b id="lblTituloEtapa">Revise seu pedido:</b>
+            </p>
+        </div>
+    </div>
+
+    <div class="m-body">
+        <div class="container">
+
+            <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn">
+                <div class="col-12">
+                    <p class="title-carrinho mt-4">
+                        <b>Itens do pedido:</b>
+
+                        <i class="fas fa-shopping-cart"></i>
+
+
+                    <div id="itensCarrinho" class="row mr-0 ml-0 animated fadeIn">
+                        {% for product in cart %}
+                        <div class="col-12 item-carrinho m-auto animated fadeInUp">
+                            <div class="dados-produto">
+                                <p class="title-produto">{{ product.quantity }} {{ product.product_name }} </p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <br>
+                    </p>
+                </div>
+
+                <div class="col-12">
+                    <p class="title-carrinho mt-4">
+                        <b>Local da entrega:</b>
+                        <i class="fas fa-map-marked-alt"></i>
+                    <div class="col-12 item-carrinho m-auto animated fadeInUp">
+                        <div class="dados-produto">
+                            <span>Bairro: </span>
+                            <p class="title-produto">{{ address.bairro }}</p>
+                            <span>Rua: </span>
+                            <p class="title-produto">{{ address.rua }}</p>
+                            <span>Número: </span>
+                            <p class="title-produto">{{ address.numero }}</p>
+                            <span>Complemento</span>
+                            <p class="title-produto">{{ address.complemento }}</p>
+                        </div>
+                    </div>
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="m-footer">
+        <div class="container">
+            <div class="container-total text-right mb-4">
+                <p class="mb-0">
+                    <span>Subtotal:</span>
+                    <span id="lblSubTotal">R$ {{sub_total}}</span>
+                </p>
+                <p class="mb-0 texto-entrega">
+                    <span><i class="fas fa-motorcycle"></i> Entrega:</span>
+                    <span id="lblValorEntrega">+ R$ {{delivery_fee}}</span>
+                </p>
+                <p class="mb-0 texto-total">
+                    <span><b>Total:</b></span>
+                    <span class="valor-total"><b id="lblValorTotal">R$ {{total}}</b></span>
+                </p>
+            </div>
+            <a href="cart/{{name}}" class="btn btn-white mr-3" id="btnVoltar">
+                Voltar
+            </a>
+            <a href="review/{{name}}?complete=True" class="btn btn-yellow float-right" id="btnEtapaPedido">
+                Continuar
+            </a>
+
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

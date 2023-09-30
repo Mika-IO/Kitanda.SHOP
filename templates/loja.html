@@ -6,8 +6,8 @@
 <base href="/" />
 <div class="container-mensagens" id="container-mensagens"></div>
 <section class="cardapio banner" id="cardapio">
-  <a class="botao-carrinho animated bounceIn" href="/cart/{{ name }}">
-    <div class="badge-total-carrinho">9</div>
+  <a class="botao-carrinho animated bounceIn" href="/cart/{{ loja.slug }}">
+    <div class="badge-total-carrinho">{{products_in_cart}}</div>
     <i class="fa fa-shopping-bag"></i>
   </a>
   <div class="container">
@@ -15,9 +15,9 @@
       <div class="col-12 col-one text-center mb-5 wow fadeIn">
         <span class="hint-title"><b>Loja</b></span>
         <h1 class="title">
-          <b>{{ name }}</b>
+          <b>{{ loja.name }}</b>
         </h1>
-        <p>Ariquemes-RO</p>
+        <p>{{loja.city}}-{{loja.UF}}</p>
       </div>
       <!-- 
       TODO categorias de produtos
@@ -45,24 +45,28 @@
         </a>
       </div> -->
       <div class="row" id="itensCardapio">
-        {% for produto in produtos %}
-        <div class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 animated fadeInUp">
-          <div class="card card-item" id="{{ produto.id }}">
-            <a href="/product/{{ produto.id }}">
-
+        {% for product in products %}
+        <div class="col-12 col-lg-3 col-md-3 col-sm-6 ml-1 mb-5 wow fadeInUp"
+          style="visibility: visible; animation-name: fadeInUp;">
+          <div class="card card-item" id="the-gramercy-tavern-burger-4-pack"
+            onclick="cardapio.metodos.clickItemMenu('the-gramercy-tavern-burger-4-pack')">
+            <a href="/product/{{ product.id }}">
               <div class="img-produto">
-                <img src="{{ produto.imagem }}" />
+                <img src="/media/{{product.image}}">
               </div>
-              <p class="title-produto text-center mt-3">
-                <b>{{ produto.nome }}</b>
+              <p class="title-produto text-center mt-4">
+                <b>{{product.name}}</b>
               </p>
             </a>
-            <small class="disaper text-center"><span>{{ produto.preco }}</span></small>
-
-            <a class="btn btn-add mt-3" href="/loja/{{ name }}?addToCart={{ produto.id }}">
+            <p class="price-produto text-center">
+              <b>{{product.price}}</b>
+            </p>
+            <a class="btn btn-add mt-3" href="/loja/{{ loja.slug }}?addToCart={{ product.id }}">
               <i class="fa fa-shopping-cart"></i>
             </a>
-            <!-- 
+          </div>
+        </div>
+        <!-- 
               TODO quantidade do produto
               <span class="btn-menos" onclick="cardapio.metodos.diminuirQuantidade('{{ produto.id }}')">
               <i class="fas fa-minus"></i>
@@ -72,8 +76,6 @@
                 <i class="fas fa-plus"></i>
               </span>
             -->
-          </div>
-        </div>
         {% endfor %}
       </div>
     </div>

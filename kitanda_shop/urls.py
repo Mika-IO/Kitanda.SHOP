@@ -12,7 +12,8 @@ urlpatterns = [
     path("loja/<str:name>/", views.store, name="store"),
     path("product/<str:id>/", views.product, name="product"),
     path("cart/<str:name>/", views.cart, name="cart"),
-    path("adress/<str:name>/", views.adress, name="adress"),
+    path("address/<str:name>/", views.address, name="address"),
+    path("review/<str:name>/", views.review, name="review"),
     path("login/", views.login, name="login"),
     path("register/", views.register, name="register"),
     path(

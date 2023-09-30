@@ -25,9 +25,8 @@
               {% csrf_token %}
               <hr class="my-4" />
               <div class="form-outline mb-4">
-                <input type="email" required id="{{ login_form.username.id_for_label }}"
-                  name="{{ login_form.username.name }}" placeholder="email@email.com"
-                  class="form-control form-control-lg" />
+                <input type="text" required id="{{ login_form.username.id_for_label }}"
+                  name="{{ login_form.username.name }}" placeholder="username" class="form-control form-control-lg" />
               </div>
 
               <div class="form-outline mb-4">

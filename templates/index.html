@@ -48,8 +48,6 @@
 </section>
 
 <section class="servicos" id="servicos">
-  <div class="background-servicos"></div>
-
   <div class="container">
     <div class="row">
       <div class="col-12 col-one text-center mb-5 wow fadeIn" style="visibility: visible; animation-name: fadeIn">
@@ -101,8 +99,6 @@
 </section>
 
 <section class="cardapio" id="cardapio">
-  <div class="background-cardapio"></div>
-
   <div class="container">
     <div class="row">
       <div class="col-12 col-one text-center mb-5 wow fadeIn">
@@ -139,32 +135,33 @@
 
       <div class="row" id="itensCardapio">
         {% for loja in lojas %}
-
-        <div class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 animated fadeInUp">
-          <a href="loja/{{ loja.slug }}" style="text-decoration: none;">
-            <div class="card card-item" id="{{ loja.id }}">
-              <div class="img-produto">
-                <img src="/media/{{ loja.image }}" />
-              </div>
-              <p class="title-produto text-center mt-4">
-                <b>Loja</b>
-              </p>
-              <p class="price-produto text-center">
-                <b>{{ loja.name }}</b>
-              </p>
+        {% if lojas|length == 1%}
+        <div class="col-12 mb-5 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+          {% else %}
+          <div class="col-12 col-lg-3 col-md-3 col-sm-6 mb-5 wow fadeInUp"
+            style="visibility: visible; animation-name: fadeInUp;">
+            {% endif %}
+            <div class="card card-item" id="the-gramercy-tavern-burger-4-pack"
+              onclick="cardapio.metodos.clickItemMenu('the-gramercy-tavern-burger-4-pack')">
+              <a href="/loja/{{ loja.slug }}">
+                <div class="img-produto">
+                  <img src="/media/{{ loja.image }}" />
+                </div>
+                <p class="title-produto text-center mt-4">
+                  <b>{{loja.name}}</b>
+                </p>
+              </a>
             </div>
-          </a>
+          </div>
+          {% endfor %}
         </div>
-
-        {% endfor %}
-      </div>
-      <!-- 
+        <!-- 
       TODO ver mais lojas
       <div class="col-12 col-one text-center wow fadeInUp">
         <a id="btnVerMais" class="btn btn-white btn-sm"> Ver mais </a>
       </div> -->
+      </div>
     </div>
-  </div>
 </section>
 
 {% endblock %}

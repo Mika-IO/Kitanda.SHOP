@@ -5,51 +5,11 @@ Models ✅
 tipo_loja - [mercado, farmácia, frutaria, outro]
 
 - Loja ✅
-    id
-    Adress
-    name
-    delivery fee
-    whatsapp
-    facebook
-    instagram
-    payment_methods [
-        na entrega
-        cartao de crédito
-        cartao de débito
-        pix
-    ]
-- ProductCategory ✅
-    id
-    name
-    prescription? OBS:exclusivo para remédios de farmácia
+- ProductCategory ❌
 - Products ✅
-    id
-    name
-    description
-    price
-    ProductCategory
-    prescription OBS:exclusivo para remédios de farmácia
 - Order ✅
-    id
-    Products
-    Client
-- Checkout ✅
-    id
-    Order
-    total
 - Client ✅
-    id
-    name
-    Adress
-    whatsapp
-- Adress ✅
-    id
-    CEP
-    road
-    number
-    neighborhood
-    city
-    state
+- address ❌
 
 URLS
 
@@ -57,15 +17,38 @@ URLS
 - /login/  ✅
 - /register/  ✅
 - /dashboard  ❌
-    informacoes da loja ❌
-    cadastro de produtos ❌
+
+    OBS:
+        O campo owner deve ser por padrao o usuário que criou a loja  ✅
+        Owner de produto deve ser algumas das lojas relacionadas ao usuário logado  ✅
+        O campo slug deve ser a normalizacao do nome da loja ex: Nome da loja -> nome-da-loja ✅
+    informacoes da loja ✅
+    cadastro de produtos  ✅
     gerenciamento de pedidos ❌
 
 - /  ✅
     lojas parceiras ✅
 
-- loja/{name} ❌
+- loja/{name} ✅
     pagina de vendas com produtos dividos por categoria
 
-- cart/{name} ❌
-    carrinho
+- cart/{name} ✅
+    adicionar carrinho ✅
+    remover carrinho ✅
+
+- address/{name} ✅
+    endereco de entrega ✅
+    calcular pedidos ✅
+
+- review/{name} ✅
+    todos os dados do pedido ✅
+
+Melhorar a responsividade das paginas no mobile ❌
+
+Configurar bucket PROD ❌
+Configurar banco de dados PROD ❌
+
+Adicionar categorias de produtos IMPROVE ❌
+Adicionar meio de pagamento IMPROVE ❌
+Implementar calculo de entrega ❌
+ 

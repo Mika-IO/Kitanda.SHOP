@@ -12,8 +12,9 @@
                 Fechar
             </a>
             <div class="etapas">
-                <div class="etapa etapa1 active">1</div>
-                <div class="etapa etapa2">2</div>
+                <div class="etapa etapa1 active"><a href="/cart/{{name}}">1</a></div>
+                <div class="etapa etapa2"><a href="/address/{{name}}">2</a></div>
+                <div class="etapa etapa2"><a href="/review/{{name}}">3</a></div>
             </div>
             <p class="title-carrinho mt-4">
                 <b id="lblTituloEtapa">Seu carrinho:</b>
@@ -24,43 +25,47 @@
     <div class="m-body">
         <div class="container">
 
+            {% if not cart %}
             <div id="itensCarrinho" class="row mr-0 ml-0 animated fadeIn">
                 <p class="carrinho-vazio"><i class="fa fa-shopping-bag"></i>Seu carrinho está vazio.</p>
             </div>
-
-
-            <div id="resumoCarrinho" class="row mr-0 ml-0 animated fadeIn hidden">
-                <div class="col-12">
-                    <p class="title-carrinho mt-4">
-                        <b>Itens do pedido:</b>
-                    </p>
-                </div>
-
-                <div class="col-12">
-                    <div class="row" id="listaItensResumo">
-
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <p class="title-carrinho mt-4">
-                        <b>Local da entrega:</b>
-                    </p>
-                </div>
-
-                <div class="col-12 item-carrinho resumo">
-                    <div class="img-map">
-                        <i class="fas fa-map-marked-alt"></i>
+            {% else %}
+            <div id="itensCarrinho" class="row mr-0 ml-0 animated fadeIn">
+                {% for product in cart %}
+                <hr>
+                <div class="col-12 item-carrinho m-auto animated fadeInUp">
+                    <div class="img-produto">
+                        <img src="media/{{ product.product_image }}">
                     </div>
                     <div class="dados-produto">
-                        <p class="texto-endereco">
-                            <b id="resumoEndereco"></b>
+                        <p class="title-produto">
+                            <b>{{ product.product_name }}</b>
                         </p>
-                        <p class="cidade-endereco" id="cidadeEndereco"></p>
+                        <p class="price-produto">
+                            <b>R$ {{ product.product_price }}</b>
+                        </p>
+                    </div>
+                    <div class="add-carrinho">
+
+                        <a href="/cart/farmácia-do-zé/?minus={{ product.product_id }}" class="btn-menos">
+                            <i class="fas fa-minus"></i>
+                        </a>
+                        <span class="add-numero-itens">{{ product.quantity }}</span>
+                        <a href="/cart/farmácia-do-zé/?add={{ product.product_id }}" class="btn-mais">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <a href="/cart/farmácia-do-zé/?remove={{ product.product_id }}"
+                            class="btn btn-remove no-mobile">
+                            <i class="fa fa-times"></i>
+                        </a>
                     </div>
                 </div>
-
+                <hr>
+                {% endfor %}
             </div>
+
+            {% endif %}
+
 
         </div>
     </div>
@@ -74,7 +79,7 @@
                 </p>
                 <p class="mb-0 texto-entrega">
                     <span><i class="fas fa-motorcycle"></i> Entrega:</span>
-                    <span id="lblValorEntrega">+ R$ {{entrega}}</span>
+                    <span id="lblValorEntrega">+ R$ {{delivery_fee}}</span>
                 </p>
                 <p class="mb-0 texto-total">
                     <span><b>Total:</b></span>
@@ -82,7 +87,7 @@
                 </p>
             </div>
 
-            <a href="adress/{{name}}" class="btn btn-yellow float-right" id="btnEtapaPedido">
+            <a href="address/{{name}}" class="btn btn-yellow float-right" id="btnEtapaPedido">
                 Continuar
             </a>
 

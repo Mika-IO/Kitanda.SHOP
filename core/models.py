@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
+import re
 
 
 class Store(models.Model):
@@ -13,7 +14,7 @@ class Store(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     image = models.ImageField(upload_to="lojas/")
     owner = models.ForeignKey(
         User,
@@ -21,12 +22,22 @@ class Store(models.Model):
         on_delete=models.CASCADE,
         verbose_name="Owner",
     )
-    delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    slug = models.CharField(max_length=20, null=True)
-    whatsapp = models.CharField(max_length=20, null=True)
-    facebook = models.CharField(max_length=100, null=True)
-    instagram = models.CharField(max_length=100, null=True)
-    address = models.CharField(max_length=100, null=True)
+    delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    slug = models.CharField(max_length=20, null=True, blank=True)
+    whatsapp = models.CharField(max_length=20, null=True, blank=True)
+    facebook = models.CharField(max_length=100, null=True, blank=True)
+    instagram = models.CharField(max_length=100, null=True, blank=True)
+    address = models.CharField(max_length=100, null=True, blank=True)
+
+    city = models.CharField(max_length=100, null=True, blank=True, default="Ariquemes")
+    UF = models.CharField(max_length=2, null=True, blank=True, default="RO")
+
+    def save(self, *args, **kwargs):
+        self.slug = re.sub(r"\s+", "-", self.name.lower())
+        super(Store, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
 
 
 class Product(models.Model):
@@ -42,6 +53,9 @@ class Product(models.Model):
     )
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def __str__(self):
+        return self.name
+
 
 class Client(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -49,9 +63,40 @@ class Client(models.Model):
     address = models.CharField(max_length=100, null=True)
     whatsapp = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.name
+
 
 class Order(models.Model):
+    STATUS_CHOICES = [
+        ("pendente", "Pendente"),
+        ("preparando", "Preparando"),
+        ("em_entrega", "Em Entrega"),
+        ("concluido", "Concluído"),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    store = models.ForeignKey(Store, on_delete=models.CASCADE)
+    client = models.ForeignKey("Client", on_delete=models.CASCADE)
+    store = models.ForeignKey("Store", on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pendente")
+    products = models.ManyToManyField("Product", through="OrderItem")
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def update_total(self):
+        total_price = sum(
+            item.product.price * item.quantity for item in self.order_items.all()
+        )
+        self.total = total_price
+        self.save()
+
+    def __str__(self):
+        return f"{self.client.name} {self.total}"
+
+
+class OrderItem(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    order = models.ForeignKey(
+        "Order", related_name="order_items", on_delete=models.CASCADE
+    )
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
