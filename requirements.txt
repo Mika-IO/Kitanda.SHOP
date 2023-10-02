@@ -3,4 +3,4 @@ Django==4.2.4
 virtualenv
 gunicorn==21.2.0
 django-jazzmin==2.6.0
-whitenois==6.5.0
+whitenoise==6.5.0
