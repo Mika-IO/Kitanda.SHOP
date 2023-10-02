@@ -32,16 +32,15 @@
             {% else %}
             <div id="itensCarrinho" class="row mr-0 ml-0 animated fadeIn">
                 {% for product in cart %}
-                <hr>
                 <div class="col-12 item-carrinho m-auto animated fadeInUp">
                     <div class="img-produto">
                         <img src="media/{{ product.product_image }}">
                     </div>
                     <div class="dados-produto">
-                        <p class="title-produto">
+                        <p class="price-produto">
                             <b>{{ product.product_name }}</b>
                         </p>
-                        <p class="price-produto">
+                        <p class="title-produto">
                             <b>R$ {{ product.product_price }}</b>
                         </p>
                     </div>
@@ -60,7 +59,6 @@
                         </a>
                     </div>
                 </div>
-                <hr>
                 {% endfor %}
             </div>
 

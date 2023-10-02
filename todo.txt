@@ -43,7 +43,7 @@ URLS
 - review/{name} ✅
     todos os dados do pedido ✅
 
-Melhorar a responsividade das paginas no mobile ❌
+Melhorar a responsividade das paginas no mobile  ✅
 
 Configurar bucket PROD ❌
 Configurar banco de dados PROD ❌
@@ -51,4 +51,5 @@ Configurar banco de dados PROD ❌
 Adicionar categorias de produtos IMPROVE ❌
 Adicionar meio de pagamento IMPROVE ❌
 Implementar calculo de entrega ❌
+Implementar pesquisa ❌
  

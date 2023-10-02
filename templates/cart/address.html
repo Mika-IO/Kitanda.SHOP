@@ -11,9 +11,9 @@
                 Fechar
             </a>
             <div class="etapas">
-                <div class="etapa etapa1"><a href="/cart/{{name}}"></a>1</a></div>
-                <div class="etapa etapa2 active"><a href="/address/{{name}}"></a>2</a></div>
-                <div class="etapa etapa2"><a href="/review/{{name}}"></a>3</a></div>
+                <div class="etapa etapa1"><a href="/cart/{{name}}">1</a></div>
+                <div class="etapa etapa2 active"><a href="/address/{{name}}">2</a></div>
+                <div class="etapa etapa2"><a href="/review/{{name}}">3</a></div>
             </div>
             <p class="title-carrinho mt-4">
                 <b id="lblTituloEtapa">Endereço de entrega:</b>
@@ -23,6 +23,7 @@
     <form method="post" action="/address/{{name}}/">
         <div class="m-body">
             <div class="container">
+                <div class="row mr-0 ml-0 animated fadeIn"></div>
 
                 <!-- TODO CEP
                 <div class="col-12 col-lg-4 col-md-4 col-sm-12">
@@ -53,7 +54,7 @@
                 <div class="w-100">
                     <div class="form-group">
                         <label>Número:</label>
-                        <input required id="txtNumero" name="numero" type="text" class="form-control">
+                        <input required id="txtNumero" name="numero" type="number" class="form-control">
                     </div>
                 </div>
 

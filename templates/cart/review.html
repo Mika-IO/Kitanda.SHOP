@@ -37,7 +37,7 @@
                         {% for product in cart %}
                         <div class="col-12 item-carrinho m-auto animated fadeInUp">
                             <div class="dados-produto">
-                                <p class="title-produto">{{ product.quantity }} {{ product.product_name }} </p>
+                                <p class="text-primary">{{ product.quantity }} {{ product.product_name }} </p>
                             </div>
                         </div>
                         {% endfor %}
@@ -47,19 +47,19 @@
                 </div>
 
                 <div class="col-12">
-                    <p class="title-carrinho mt-4">
+                    <p class=" mt-4">
                         <b>Local da entrega:</b>
                         <i class="fas fa-map-marked-alt"></i>
-                    <div class="col-12 item-carrinho m-auto animated fadeInUp">
+                    <div class="col-12 f m-auto animated fadeInUp">
                         <div class="dados-produto">
-                            <span>Bairro: </span>
-                            <p class="title-produto">{{ address.bairro }}</p>
-                            <span>Rua: </span>
-                            <p class="title-produto">{{ address.rua }}</p>
-                            <span>Número: </span>
-                            <p class="title-produto">{{ address.numero }}</p>
-                            <span>Complemento</span>
-                            <p class="title-produto">{{ address.complemento }}</p>
+                            <h5>Bairro: </h5>
+                            <p class="text-primary">{{ address.bairro }}</p>
+                            <h5>Rua: </h5>
+                            <p class="text-primary">{{ address.rua }}</p>
+                            <h5>Número: </h5>
+                            <p class="text-primary">{{ address.numero }}</p>
+                            <h5>Complemento</h5>
+                            <p class="text-primary">{{ address.complemento }}</p>
                         </div>
                     </div>
                     </p>
