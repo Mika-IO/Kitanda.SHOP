@@ -57,16 +57,6 @@ class Product(models.Model):
         return self.name
 
 
-class Client(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=100, null=True)
-    whatsapp = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.name
-
-
 class Order(models.Model):
     STATUS_CHOICES = [
         ("pendente", "Pendente"),
@@ -76,10 +66,13 @@ class Order(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    client = models.ForeignKey("Client", on_delete=models.CASCADE)
     store = models.ForeignKey("Store", on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pendente")
-    products = models.ManyToManyField("Product", through="OrderItem")
+
+    content = models.TextField()
+
+    delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def update_total(self):
@@ -91,12 +84,3 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.client.name} {self.total}"
-
-
-class OrderItem(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    order = models.ForeignKey(
-        "Order", related_name="order_items", on_delete=models.CASCADE
-    )
-    product = models.ForeignKey("Product", on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1)

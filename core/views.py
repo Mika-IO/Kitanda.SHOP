@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 
-from .models import Store, Product
+from .models import Store, Product, Order
 
 # utils
 
@@ -261,6 +261,15 @@ def review(request, name):
 
     complete = request.GET.get("complete")
     if complete:
+        order = Order(
+            status="pendente",
+            store=store,
+            content=str(context),
+            delivery_fee=delivery_fee,
+            subtotal=sub_total,
+            total=total,
+        )
+        order.save()
         whatsapp_link = get_whatsapp_link(context, store.whatsapp)
         return redirect(whatsapp_link)
 

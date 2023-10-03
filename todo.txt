@@ -52,4 +52,5 @@ Adicionar categorias de produtos IMPROVE ❌
 Adicionar meio de pagamento IMPROVE ❌
 Implementar calculo de entrega ❌
 Implementar pesquisa ❌
+Bug CRSF ❌
  
