@@ -64,6 +64,16 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "https://kitanda.shop",
+]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://kitanda.shop",
+]
+
+
 ROOT_URLCONF = "kitanda_shop.urls"
 
 TEMPLATES = [
@@ -103,7 +113,6 @@ WSGI_APPLICATION = "kitanda_shop.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 if DEBUG:
-    print(f"DEBUG {DEBUG}")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
