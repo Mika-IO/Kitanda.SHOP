@@ -46,27 +46,31 @@
       </div> -->
       <div class="row" id="itensCardapio">
         {% for product in products %}
-        <div class="col-12 col-lg-3 col-md-3 col-sm-6 ml-1 mb-5 wow fadeInUp"
-          style="visibility: visible; animation-name: fadeInUp;">
-          <div class="card card-item" id="the-gramercy-tavern-burger-4-pack"
-            onclick="cardapio.metodos.clickItemMenu('the-gramercy-tavern-burger-4-pack')">
-            <a href="/product/{{ product.id }}">
-              <div class="img-produto">
-                <img src="{{ product.image.url }}">
-              </div>
-              <p class="title-produto text-center mt-4">
-                <b>{{product.name}}</b>
+        {% if lojas|length == 1%}
+        <div class="col-12  mb-5 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+          {% else %}
+          <div class="col-12 col-lg-3 col-md-3 col-sm-6 ml-1 mb-5 wow fadeInUp">
+            {% endif %}
+
+            <div class="card card-item" id="the-gramercy-tavern-burger-4-pack"
+              onclick="cardapio.metodos.clickItemMenu('the-gramercy-tavern-burger-4-pack')">
+              <a href="/product/{{ product.id }}">
+                <div class="img-produto">
+                  <img src="{{ product.image.url }}">
+                </div>
+                <p class="title-produto text-center mt-4">
+                  <b>{{product.name}}</b>
+                </p>
+              </a>
+              <p class="price-produto text-center">
+                <b>{{product.price}}</b>
               </p>
-            </a>
-            <p class="price-produto text-center">
-              <b>{{product.price}}</b>
-            </p>
-            <a class="btn btn-add mt-3" href="/loja/{{ loja.slug }}?addToCart={{ product.id }}">
-              <i class="fa fa-shopping-cart"></i>
-            </a>
+              <a class="btn btn-add mt-3" href="/loja/{{ loja.slug }}?addToCart={{ product.id }}">
+                <i class="fa fa-shopping-cart"></i>
+              </a>
+            </div>
           </div>
-        </div>
-        <!-- 
+          <!-- 
               TODO quantidade do produto
               <span class="btn-menos" onclick="cardapio.metodos.diminuirQuantidade('{{ produto.id }}')">
               <i class="fas fa-minus"></i>
@@ -76,10 +80,10 @@
                 <i class="fas fa-plus"></i>
               </span>
             -->
-        {% endfor %}
+          {% endfor %}
+        </div>
       </div>
     </div>
-  </div>
 </section>
 <br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="container text-center ">

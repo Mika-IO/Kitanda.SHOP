@@ -256,7 +256,8 @@ a.navbar-brand {
 }
 
 .card-item {
-  height: 400px;
+  height: 450px;
+  min-width: 300px;
 }
 
 .card-item:hover {
