@@ -71,10 +71,10 @@ def get_address(request):
 
 
 def get_whatsapp_link(context, phone_number):
-    products_message = "Gostaria de fazer o pedido dos produtos:\n\n"
+    products_message = "Gostaria de fazer o pedido dos seguintes produtos:\n\n"
     for item in context["cart"]:
-        products_message += f"- {item['product_name']} (Quantidade: {item['quantity']}, Preço: R${item['product_price']})\n"
-    mensagem_context = f"Olá, vim pelo https://kitanda.shop/{context['name']}  :)\n\n"
+        products_message += f"- {item['quantity']} {item['product_name']} \n"
+    mensagem_context = f"Olá sou {context['address']['nome']}!!  :]\n\nVim por \nhttps://kitanda.shop/loja/{context['name']} \n\n"
     mensagem_context += products_message
     mensagem_context += f"\nEndereço: {context['address']['bairro']}, {context['address']['rua']} {context['address']['numero']}, {context['address']['complemento']}\n"
     mensagem_context += f"Subtotal: R${context['sub_total']}\n"
@@ -208,12 +208,14 @@ def address(request, name):
         rua = request.POST.get("rua")
         numero = request.POST.get("numero")
         complemento = request.POST.get("complemento")
+        nome = request.POST.get("nome")
 
         request.session["address"] = {
             "bairro": bairro,
             "rua": rua,
             "numero": numero,
             "complemento": complemento,
+            "nome": nome,
         }
         print(request.session["address"])
         return redirect(f"/review/{name}/")
