@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-pp1*v9+(&06h3$#r)g7bhswq4z0x9+0xm-wf3@3lsl&o7+pl#1"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -102,7 +102,7 @@ WSGI_APPLICATION = "kitanda_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if False:
+if DEBUG:
     print(f"DEBUG {DEBUG}")
     DATABASES = {
         "default": {
