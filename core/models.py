@@ -61,6 +61,7 @@ class Store(models.Model):
     class Meta:
         verbose_name_plural = "Lojas"
         verbose_name = "Loja"
+        db_table = "core_store"
 
 
 class Product(models.Model):
@@ -84,6 +85,7 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = "Produtos"
         verbose_name = "Produto"
+        db_table = "core_product"
 
 
 class Order(models.Model):
@@ -127,3 +129,4 @@ class Order(models.Model):
     class Meta:
         verbose_name_plural = "Pedidos"
         verbose_name = "Pedido"
+        db_table = "core_order"
