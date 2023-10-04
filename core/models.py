@@ -125,7 +125,7 @@ class Order(models.Model):
 
     def __str__(self):
         client_name = dict(self.content)["address"]["nome"]
-        return f"{client_name} {self.total}"
+        return f"{self.status} {client_name} R$ {self.total}"
 
     class Meta:
         verbose_name_plural = "Pedidos"

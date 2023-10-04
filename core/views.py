@@ -37,7 +37,7 @@ def add_product(cart, product):
             "product_id": str(product.id),
             "product_name": product.name,
             "product_price": str(product.price),
-            "product_image": str(product.image),
+            "product_image": str(product.image.url),
             "quantity": 1,
         }
     )
