@@ -5,7 +5,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import redirect
 
-app_name = "kitanda_shop"  # Substitua 'kitanda' pelo nome do seu app
+app_name = "kitanda_shop"
+
+handler404 = "core.views.handler404"
+handler500 = "core.views.handler500"
 
 urlpatterns = [
     path("", views.home, name="landing_page"),

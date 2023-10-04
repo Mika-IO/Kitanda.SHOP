@@ -88,6 +88,14 @@ def get_whatsapp_link(context, phone_number):
 # views
 
 
+def handler404(request, *args, **argv):
+    return render(request, "page_404.html", {})
+
+
+def handler500(request, *args, **argv):
+    return render(request, "page_500.html", {})
+
+
 def home(request):
     stores = Store.objects.all()
     return render(request, "index.html", {"lojas": stores})
