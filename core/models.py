@@ -12,25 +12,44 @@ class Store(models.Model):
         ("outro", "Outro"),
     ]
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    name = models.CharField(max_length=100, unique=True)
-    image = models.ImageField(upload_to="lojas/")
+    id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False, verbose_name="ID"
+    )
+    type = models.CharField(max_length=20, choices=TYPE_CHOICES, verbose_name="Tipo")
+    name = models.CharField(max_length=100, unique=True, verbose_name="Nome")
+    image = models.ImageField(upload_to="lojas/", verbose_name="Imagem")
     owner = models.ForeignKey(
         User,
         null=False,
         on_delete=models.CASCADE,
-        verbose_name="Owner",
+        verbose_name="Proprietário",
     )
-    delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    slug = models.CharField(max_length=20, null=True, blank=True)
-    whatsapp = models.CharField(max_length=20, null=True, blank=True)
-    facebook = models.CharField(max_length=100, null=True, blank=True)
-    instagram = models.CharField(max_length=100, null=True, blank=True)
-    address = models.CharField(max_length=100, null=True, blank=True)
-
-    city = models.CharField(max_length=100, null=True, blank=True, default="Ariquemes")
-    UF = models.CharField(max_length=2, null=True, blank=True, default="RO")
+    delivery_fee = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0, verbose_name="Taxa de Entrega"
+    )
+    slug = models.CharField(max_length=20, null=True, blank=True, verbose_name="Slug")
+    whatsapp = models.CharField(
+        max_length=20, null=True, blank=True, verbose_name="WhatsApp"
+    )
+    facebook = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name="Facebook"
+    )
+    instagram = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name="Instagram"
+    )
+    address = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name="Endereço"
+    )
+    city = models.CharField(
+        max_length=100,
+        null=True,
+        blank=True,
+        default="Ariquemes",
+        verbose_name="Cidade",
+    )
+    UF = models.CharField(
+        max_length=2, null=True, blank=True, default="RO", verbose_name="Estado"
+    )
 
     def save(self, *args, **kwargs):
         self.slug = re.sub(r"\s+", "-", self.name.lower())
@@ -39,22 +58,32 @@ class Store(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Lojas"
+        verbose_name = "Loja"
+
 
 class Product(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    image = models.ImageField(upload_to="produtos/")
+    id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False, verbose_name="ID"
+    )
+    name = models.CharField(max_length=100, verbose_name="Nome")
+    description = models.TextField(verbose_name="Descrição")
+    image = models.ImageField(upload_to="produtos/", verbose_name="Imagem")
     store = models.ForeignKey(
         Store,
         null=False,
         on_delete=models.CASCADE,
-        verbose_name="Owner",
+        verbose_name="Loja",
     )
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Preço")
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "Produtos"
+        verbose_name = "Produto"
 
 
 class Order(models.Model):
@@ -65,15 +94,25 @@ class Order(models.Model):
         ("concluido", "Concluído"),
     ]
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    store = models.ForeignKey("Store", on_delete=models.CASCADE)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pendente")
+    id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4, editable=False, verbose_name="ID"
+    )
+    store = models.ForeignKey("Store", on_delete=models.CASCADE, verbose_name="Loja")
+    status = models.CharField(
+        max_length=20, choices=STATUS_CHOICES, default="pendente", verbose_name="Status"
+    )
 
-    content = models.TextField()
+    content = models.TextField(verbose_name="Conteúdo")
 
-    delivery_fee = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    subtotal = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    delivery_fee = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0, verbose_name="Taxa de Entrega"
+    )
+    subtotal = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0, verbose_name="Subtotal"
+    )
+    total = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0, verbose_name="Total"
+    )
 
     def update_total(self):
         total_price = sum(
@@ -84,3 +123,7 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.client.name} {self.total}"
+
+    class Meta:
+        verbose_name_plural = "Pedidos"
+        verbose_name = "Pedido"

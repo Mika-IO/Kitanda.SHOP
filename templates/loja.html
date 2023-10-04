@@ -52,7 +52,7 @@
             onclick="cardapio.metodos.clickItemMenu('the-gramercy-tavern-burger-4-pack')">
             <a href="/product/{{ product.id }}">
               <div class="img-produto">
-                <img src="/media/{{product.image}}">
+                <img src="{{ product.image.url }}">
               </div>
               <p class="title-produto text-center mt-4">
                 <b>{{product.name}}</b>
