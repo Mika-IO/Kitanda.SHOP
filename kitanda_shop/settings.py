@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-pp1*v9+(&06h3$#r)g7bhswq4z0x9+0xm-wf3@3lsl&o7+pl#1"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -60,7 +60,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "kitanda_shop.urls"
@@ -101,7 +100,7 @@ WSGI_APPLICATION = "kitanda_shop.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG:
+if False:
     print(f"DEBUG {DEBUG}")
     DATABASES = {
         "default": {
@@ -159,12 +158,15 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-cloudinary.config(
-    cloud_name="da6sbogam",
-    api_key="446671287474149",
-    api_secret="XEyl9kCf8t8UUz1rfs3pWVChvEU",
-)
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": "da6sbogam",
+    "API_KEY": "446671287474149",
+    "API_SECRET": "XEyl9kCf8t8UUz1rfs3pWVChvEU",
+}
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = "/static/"
+
+MEDIA_URL = "/media/"
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"

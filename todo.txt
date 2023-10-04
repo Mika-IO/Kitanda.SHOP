@@ -46,7 +46,7 @@ URLS
 Melhorar a responsividade das paginas no mobile  ✅
 
 Configurar bucket PROD ❌
-Configurar banco de dados PROD ❌
+Configurar banco de dados PROD ✅
 
 Adicionar categorias de produtos IMPROVE ❌
 Adicionar meio de pagamento IMPROVE ❌
