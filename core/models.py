@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import User
 import re
+import json
 
 
 class Store(models.Model):
@@ -94,6 +95,7 @@ class Order(models.Model):
         ("preparando", "Preparando"),
         ("em_entrega", "Em Entrega"),
         ("concluido", "Concluído"),
+        ("cancelado", "Cancelado"),
     ]
 
     id = models.UUIDField(
@@ -124,8 +126,18 @@ class Order(models.Model):
         self.save()
 
     def __str__(self):
-        client_name = dict(self.content)["address"]["nome"]
-        return f"{self.status} {client_name} R$ {self.total}"
+        client_name = dict(json.loads(self.content.replace("'", '"')))["address"][
+            "nome"
+        ]
+        if self.status == "pendente":
+            emoji = "❌ Pendente"
+        if self.status == "preparando":
+            emoji = "📦 Preparando"
+        if self.status == "em_entrega":
+            emoji = "🚚 Em entrega"
+        if self.status == "concluido":
+            emoji = "✅ Concluído"
+        return f"{emoji} - {client_name} R$ {self.total}"
 
     class Meta:
         verbose_name_plural = "Pedidos"
