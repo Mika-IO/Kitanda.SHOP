@@ -81,7 +81,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Preço")
 
     def __str__(self):
-        return self.name
+        return f" {self.name} - R${self.price} - {self.store.name}"
 
     class Meta:
         verbose_name_plural = "Produtos"
