@@ -56,12 +56,12 @@ def remove_product(cart, product, all=False):
     return new_cart
 
 
-def get_cart(request):
-    return request.session.get("cart", [])
+def get_cart(request, name):
+    return request.session.get(f"cart_{name}", [])
 
 
-def update_cart(request, cart):
-    request.session["cart"] = cart
+def update_cart(request, cart, name):
+    request.session[f"cart_{name}"] = cart
     return cart
 
 
@@ -104,7 +104,7 @@ def home(request):
 def store(request, name):
     store = Store.objects.get(slug=name)
     products = Product.objects.filter(store=store)
-    cart = get_cart(request)
+    cart = get_cart(request, name)
 
     product_id = request.GET.get("addToCart")
     if product_id:
@@ -114,7 +114,7 @@ def store(request, name):
 
             if not is_product_in_cart:
                 cart = add_product(cart, product)
-            update_cart(request, cart)
+            update_cart(request, cart, name)
             print(cart)
 
     return render(
@@ -149,37 +149,37 @@ def product(request, id):
 
 
 def cart(request, name):
-    cart = get_cart(request)
+    cart = get_cart(request, name)
 
     product_id = request.GET.get("add")
     if product_id:
         product = Product.objects.get(id=product_id)
         if product:
-            cart = get_cart(request)
+            cart = get_cart(request, name)
 
             is_product_in_cart = increment_product_in_cart(cart, product)
 
             if not is_product_in_cart:
                 cart = add_product(cart, product)
-            update_cart(request, cart)
+            update_cart(request, cart, name)
 
     product_id = request.GET.get("minus")
     if product_id:
         product = Product.objects.get(id=product_id)
         if product:
-            cart = get_cart(request)
+            cart = get_cart(request, name)
 
             cart = remove_product(cart, product)
-            update_cart(request, cart)
+            update_cart(request, cart, name)
 
     product_id = request.GET.get("remove")
     if product_id:
         product = Product.objects.get(id=product_id)
         if product:
-            cart = get_cart(request)
+            cart = get_cart(request, name)
 
             cart = remove_product(cart, product, all=True)
-            update_cart(request, cart)
+            update_cart(request, cart, name)
 
     store = Store.objects.get(slug=name)
     sub_total = 0
@@ -220,7 +220,7 @@ def address(request, name):
         print(request.session["address"])
         return redirect(f"/review/{name}/")
 
-    cart = get_cart(request)
+    cart = get_cart(request, name)
     store = Store.objects.get(slug=name)
     sub_total = 0
     total = 0
@@ -243,7 +243,7 @@ def address(request, name):
 
 def review(request, name):
     address = get_address(request)
-    cart = get_cart(request)
+    cart = get_cart(request, name)
     store = Store.objects.get(slug=name)
 
     if not cart:
