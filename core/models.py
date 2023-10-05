@@ -137,6 +137,8 @@ class Order(models.Model):
             emoji = "🚚 Em entrega"
         if self.status == "concluido":
             emoji = "✅ Concluído"
+        if self.status == "cancelado":
+            emoji = "😔 Cancelado"
         return f"{emoji} - {client_name} R$ {self.total}"
 
     class Meta:
